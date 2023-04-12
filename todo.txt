@@ -1,0 +1,24 @@
+todo:
+gitignore
+readme.md
+pytest
+difficulty settings
+make
+package
+publishing
+CI/CT
+linting
+env
+input args, help section, ... parameters
+refactor in more than two files
+docker container?
+trying it out on a website???
+
+profiling
+personal win-statistics
+print winning row
+doc
+numba
+c binding
+pop-out variant
+backstory
