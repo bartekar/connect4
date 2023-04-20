@@ -11,6 +11,8 @@ linting
 env
 input args, help section, ... parameters
 refactor in more than two files
+  type hints
+  enums
 docker container?
 trying it out on a website???
 
