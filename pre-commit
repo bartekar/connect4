@@ -1,0 +1,8 @@
+#!/bin/sh
+
+LINTER_RES=$(python3 -m flake8 .)
+
+if [ "$LINTER_RES" -ne 0 ]; then
+	exit 1
+fi
+
