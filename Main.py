@@ -23,7 +23,7 @@ def humanVSrandom():
             print(game)
             turn = 1
 
-    if game.winner == None:
+    if game.winner is None:
         print("Draw")
     else:
         if game.winner == 1:

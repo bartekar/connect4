@@ -9,7 +9,7 @@ def test_init_0():
     assert g.h == 6
     assert g.w == 7
     assert g.moves == []
-    assert g.winner == None
+    assert g.winner is None
     assert len(g.field) == g.h
     for row in g.field:
         assert len(row) == g.w
@@ -20,7 +20,7 @@ def test_reset_0():
     assert g.h == 6
     assert g.w == 7
     assert g.moves == []
-    assert g.winner == None
+    assert g.winner is None
 
 @pytest.mark.simple
 def test_reset_1():

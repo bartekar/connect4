@@ -12,7 +12,7 @@ class Game:
         self.reset()
 
     def is_over(self):
-        if self.winner != None:
+        if self.winner is not None:
             return True
         if (self.w*self.h) == len(self.moves):
             return True
@@ -106,7 +106,7 @@ class Game:
         return 0
 
     def place_move(self, column, s):
-        if self.winner != None:
+        if self.winner is not None:
             raise Exception('game is over')
         row = self.find_next_free_row(column)
         self.field[row][column] = s
@@ -155,7 +155,7 @@ class Game:
             cur_symb = symb
             while True:
                 valid_moves = self.get_valid_moves()
-                if self.winner != None:
+                if self.winner is not None:
                     win_stats[self.winner] += 1
                     break
                 if len(valid_moves) == 0:
