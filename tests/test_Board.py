@@ -3,6 +3,7 @@ import pytest
 
 from Board import Game
 
+
 @pytest.mark.simple
 def test_init_0():
     g = Game()
@@ -14,6 +15,7 @@ def test_init_0():
     for row in g.field:
         assert len(row) == g.w
 
+
 @pytest.mark.simple
 def test_reset_0():
     g = Game()
@@ -21,6 +23,7 @@ def test_reset_0():
     assert g.w == 7
     assert g.moves == []
     assert g.winner is None
+
 
 @pytest.mark.simple
 def test_reset_1():
@@ -30,6 +33,7 @@ def test_reset_1():
         assert len(row) == g.w
         for elem in row:
             assert elem == 0
+
 
 @pytest.mark.simple
 def test_place_move_0():
@@ -48,6 +52,7 @@ def test_place_move_0():
     assert g.moves[-1]['column'] == 0
     assert g.field[3][0] == 2
 
+
 @pytest.mark.edge
 def test_place_move_1():
     g = Game()
@@ -57,6 +62,7 @@ def test_place_move_1():
         assert True
     else:
         pytest.fail('making a move on a non-existing column')
+
 
 @pytest.mark.edge
 def test_place_move_2():
@@ -68,6 +74,7 @@ def test_place_move_2():
         assert True
     else:
         pytest.fail('only 1 and 2 are expected to be valid symbols')
+
 
 @pytest.mark.simple
 def test_undo_move_0():
@@ -81,11 +88,13 @@ def test_undo_move_0():
     assert g.moves[-1]['column'] == 6
     assert g.field[0][5] == 0
 
+
 @pytest.mark.edge
 def test_undo_move_1():
     g = Game()
     g.undo_move()
     assert True, 'undoing a move on an empty board...'
+
 
 # 0 1 2 3 4 5 6 7
 # . . . . . 1 . .
@@ -103,6 +112,7 @@ def test_detect_win_at_0():
     expected_symbol = 1
     assert g.detect_win_at(3, 5) == expected_symbol, 'vertical connection of 4'
     assert g.winner == 1
+
 
 # 0 1 2 3 4 5 6 7
 # . 2 2 2 2 . . .

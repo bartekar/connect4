@@ -235,6 +235,7 @@ def test0():
     print(g.winner)
     print(g.get_valid_moves())
 
+
 def test1():
     g = Game()
     g.init0()
@@ -242,10 +243,12 @@ def test1():
     stats = g._do_depth_search(1, num=200)
     print(stats)
 
+
 def test2():
     g = Game()
     stats = g._do_suboptimal_search(1, 2, 20)
     print(stats)
+
 
 def test3():
     g = Game()
@@ -253,6 +256,7 @@ def test3():
     print(g)
     g._do_depth_analysis(1,100)
     g._do_depth_analysis(2,100)
+
 
 if __name__ == "__main__":
     test2()

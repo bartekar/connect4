@@ -2,6 +2,7 @@ from Board import Game
 
 # todo: bei vollem brett schmiert das prgm ab
 
+
 def humanVSrandom():
     game = Game()
     print("VIER GEWINNT")
@@ -30,6 +31,7 @@ def humanVSrandom():
             print("You win")
         else:
             print("Computer wins")
+
 
 if __name__ == "__main__":
     humanVSrandom()
