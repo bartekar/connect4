@@ -113,7 +113,7 @@ class Game:
         win = self.detect_win_at(row, column)
         if win != 0:
             self.winner = win
-        self.moves.append({'column':column, 
+        self.moves.append({'column':column,
                            'symb':s,
                            'row':row,
                            'win':win})
@@ -211,12 +211,12 @@ class Game:
             mv = None
             scr = None
             for move, score in move_stats.items():
-                #print(move, score)
+                # print(move, score)
                 if score[adv_symb] <= min_score:
                     mv = move
                     scr = score
                     min_score = score[adv_symb]
-            #print("ret", mv, scr)
+            # print("ret", mv, scr)
             return mv, scr
 
 

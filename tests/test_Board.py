@@ -64,7 +64,7 @@ def test_place_move_2():
     invalid_symbol = 3
     try:
         g.place_move(2, invalid_symbol)
-    except:
+    except Exception:
         assert True
     else:
         pytest.fail('only 1 and 2 are expected to be valid symbols')
@@ -163,21 +163,21 @@ def test_win_at_2():
 # 2 2 . . . . . .
 # 2 . . . . . . .
 @pytest.mark.simple
-def test_win_at_2():
+def test_win_at_3():
     g = Game()
-    g.place_move(0, 1) # top left triangle
+    g.place_move(0, 1)  # top left triangle
     g.place_move(0, 1)
     g.place_move(0, 1)
     g.place_move(1, 1)
     g.place_move(1, 1)
     g.place_move(2, 1)
 
-    g.place_move(3, 2) # another diagonal
+    g.place_move(3, 2)  # another diagonal
     g.place_move(2, 2)
     g.place_move(1, 1)
     g.place_move(0, 2)
 
-    g.place_move(0, 2) # finishing diagonal
+    g.place_move(0, 2)  # finishing diagonal
     g.place_move(1, 2)
     g.place_move(3, 2)
     g.place_move(4, 2)
@@ -189,7 +189,7 @@ def test_win_at_2():
     assert g.detect_win_at(0, 4) == 0
     assert g.detect_win_at(1, 1) == 0
 
-    g.place_move(2, 2) # winning move
+    g.place_move(2, 2)  # winning move
 
     assert g.detect_win_at(4, 0) == 2, 'now there is a winning line with 5 symbols'
     assert g.detect_win_at(3, 1) == 2
@@ -197,9 +197,3 @@ def test_win_at_2():
     assert g.detect_win_at(1, 3) == 2
     assert g.detect_win_at(0, 4) == 2
     assert g.detect_win_at(1, 1) == 0
-
-
-
-
-
-
