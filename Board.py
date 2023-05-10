@@ -10,14 +10,14 @@ class Game:
         self.moves= []
         self.winner= None
         self.reset()
-    
+
     def is_over(self):
         if self.winner != None:
             return True
         if (self.w*self.h) == len(self.moves):
             return True
         return False
-        
+
     def reset(self):
         self.field= []
         for y in range(self.h):
@@ -27,7 +27,7 @@ class Game:
             self.field.append(tmp)
         self.moves= []
         self.winner= None
-    
+
     def init0(self):
         self.place_move(2, 1)
         self.place_move(3, 2)
@@ -38,7 +38,7 @@ class Game:
         #    x
         #   xoo
         # 0123456
-    
+
     def __str__(self):
         res= " 0 1 2 3 4 5 6\n"
         for y in range(self.h):
@@ -52,17 +52,16 @@ class Game:
                     chr= " X"
                 else:
                     raise Exception("bad value for field", tmp)
-                    
                 res+= chr
             res+= "\n"
         return res
-    
+
     # helper function for function below
     def is_same_symbol(self, symb, row, column):
         if 0 <= row < self.h and 0 <= column < self.w:
             return symb == self.field[row][column]
         return False
-    
+
     def detect_win_at(self, row, column):
         # detect win con in column
         symb= self.field[row][column]
@@ -74,7 +73,7 @@ class Game:
                 count_same= 0
             if count_same == 4:
                 return symb
-        
+
         # detect win con in row
         count_same= 0
         for k in range(-3,4):
@@ -84,7 +83,7 @@ class Game:
                 count_same= 0
             if count_same == 4:
                 return symb
-        
+
         # detect win con in diagonal
         count_same= 0
         for k in range(-3,4):
@@ -94,7 +93,7 @@ class Game:
                 count_same= 0
             if count_same == 4:
                 return symb
-        
+
         # detect win con in other diagonal
         count_same= 0
         for k in range(-3,4):
@@ -104,9 +103,8 @@ class Game:
                 count_same= 0
             if count_same == 4:
                 return symb
-        
         return 0
-        
+
     def place_move(self, column, s):
         if self.winner != None:
             raise Exception('game is over')
@@ -119,13 +117,12 @@ class Game:
                            'symb':s,
                            'row':row,
                            'win':win})
-        
+
     def undo_move(self):
         last_move= self.moves.pop()
         self.field[last_move['row']][last_move['column']]= 0
         self.winner= None
-    
-    
+
     def find_next_free_row(self, column):
         if self.field[-1][column] != 0:
             raise Exception("this column is already full")
@@ -135,14 +132,14 @@ class Game:
             for y in range(self.h-1,-1,-1):
                 if self.field[y-1][column] != 0:
                     return y
-    
+
     def get_valid_moves(self):
         valid_ones= []
         for k in range(self.w):
             if self.field[-1][k] == 0:
                 valid_ones.append(k)
         return valid_ones
-    
+
     def do_random_move(self, symb):
         possible_moves= self.get_valid_moves()
         if len(possible_moves) == 0:
@@ -150,7 +147,7 @@ class Game:
         idx= int(len(possible_moves) *random.random())
         move= possible_moves[idx]
         self.place_move(move, symb)
-    
+
     def _do_depth_search(self, symb, num=1):
         win_stats= {1:0, 2:0, None:0}
         num_moves= len(self.moves)
@@ -171,7 +168,7 @@ class Game:
         for k,v in win_stats.items():
             win_stats[k]= v/num
         return win_stats
-    
+
     # get the win rate for each possible move
     def _do_depth_analysis(self, symb, num_depth_runs):
         win_rate_per_move={}
@@ -185,7 +182,7 @@ class Game:
                 win_rate_per_move[move]= stats[symb]
             self.undo_move()
         return win_rate_per_move
-    
+
     # do a breadth search across all valid moves until
     # a certain depth is reached. then follow with
     # random moves until game over
