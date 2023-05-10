@@ -5,7 +5,7 @@ from Board import Game
 
 @pytest.mark.simple
 def test_init_0():
-    g= Game()
+    g = Game()
     assert g.h == 6
     assert g.w == 7
     assert g.moves == []
@@ -16,7 +16,7 @@ def test_init_0():
 
 @pytest.mark.simple
 def test_reset_0():
-    g= Game()
+    g = Game()
     assert g.h == 6
     assert g.w == 7
     assert g.moves == []
@@ -24,7 +24,7 @@ def test_reset_0():
 
 @pytest.mark.simple
 def test_reset_1():
-    g= Game()
+    g = Game()
     assert len(g.field) == g.h
     for row in g.field:
         assert len(row) == g.w
@@ -33,7 +33,7 @@ def test_reset_1():
 
 @pytest.mark.simple
 def test_place_move_0():
-    g= Game()
+    g = Game()
     g.place_move(0, 1)
     assert len(g.moves) == 1
     assert g.moves[0]['column'] == 0
@@ -50,7 +50,7 @@ def test_place_move_0():
 
 @pytest.mark.edge
 def test_place_move_1():
-    g= Game()
+    g = Game()
     try:
         g.place_move(7, 1)
     except IndexError:
@@ -60,8 +60,8 @@ def test_place_move_1():
 
 @pytest.mark.edge
 def test_place_move_2():
-    g= Game()
-    invalid_symbol= 3
+    g = Game()
+    invalid_symbol = 3
     try:
         g.place_move(2, invalid_symbol)
     except:
@@ -71,7 +71,7 @@ def test_place_move_2():
 
 @pytest.mark.simple
 def test_undo_move_0():
-    g= Game()
+    g = Game()
     g.place_move(5, 0)
     g.place_move(6, 1)
     g.place_move(5, 0)
@@ -83,7 +83,7 @@ def test_undo_move_0():
 
 @pytest.mark.edge
 def test_undo_move_1():
-    g= Game()
+    g = Game()
     g.undo_move()
     assert True, 'undoing a move on an empty board...'
 
@@ -95,12 +95,12 @@ def test_undo_move_1():
 # . . . . . . . .
 @pytest.mark.simple
 def test_detect_win_at_0():
-    g= Game()
+    g = Game()
     g.place_move(5, 1)
     g.place_move(5, 1)
     g.place_move(5, 1)
     g.place_move(5, 1)
-    expected_symbol= 1
+    expected_symbol = 1
     assert g.detect_win_at(3, 5) == expected_symbol, 'vertical connection of 4'
     assert g.winner == 1
 
@@ -112,12 +112,12 @@ def test_detect_win_at_0():
 # . . . . . . . .
 @pytest.mark.simple
 def test_win_at_1():
-    g= Game()
+    g = Game()
     g.place_move(1, 2)
     g.place_move(2, 2)
     g.place_move(3, 2)
     g.place_move(4, 2)
-    expected_symbol= 2
+    expected_symbol = 2
     assert g.detect_win_at(0, 1) == expected_symbol, 'horizontal connection of 4'
     assert g.detect_win_at(0, 2) == expected_symbol
     assert g.detect_win_at(0, 3) == expected_symbol
@@ -134,7 +134,7 @@ def test_win_at_1():
 # . . . . . . . .
 @pytest.mark.simple
 def test_win_at_2():
-    g= Game()
+    g = Game()
     g.place_move(2, 2)
     g.place_move(1, 1)
     g.place_move(3, 2)
@@ -145,7 +145,7 @@ def test_win_at_2():
     g.place_move(3, 1)
     g.place_move(4, 2)
     g.place_move(4, 1)
-    expected_symbol= 1
+    expected_symbol = 1
     assert g.detect_win_at(0, 1) == expected_symbol, 'diagonal connection of 4'
     assert g.detect_win_at(1, 2) == expected_symbol
     assert g.detect_win_at(2, 3) == expected_symbol
@@ -164,7 +164,7 @@ def test_win_at_2():
 # 2 . . . . . . .
 @pytest.mark.simple
 def test_win_at_2():
-    g= Game()
+    g = Game()
     g.place_move(0, 1) # top left triangle
     g.place_move(0, 1)
     g.place_move(0, 1)
