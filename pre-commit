@@ -1,8 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
-LINTER_RES=$(python3 -m flake8 .)
+# If any command fails, exit immediately with that command's exit status
+set -eo pipefail
 
-if [ "$LINTER_RES" -ne 0 ]; then
-	exit 1
-fi
+python3 -m flake8 .
 
